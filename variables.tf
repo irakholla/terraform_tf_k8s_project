@@ -3,64 +3,28 @@ variable "name_tag" {
   default   = "main_test"
 }
 
-# ---------------- random_id module ----------------
-
-variable "number_of_instances" {
-  type      = string
-  default   = "1"
-}
-
-variable "for_random_byte_length" {
-  type      = string
-  default   = "2"
-}
-
-# ---------------- aws_ebs_volume module ----------------
-
-variable "ebs_availability_zone" {
-  type      = string
-  default   = "us-east-1a"
-}
-
-variable "ebs_size" {
-  type      = string
-  default   = "1"
-}
-
-# ---------------- aws_ebs_volume_masters module ----------------
+# ---------------- aws_ebs_volume_masters ec2 module ----------------
 
 variable "ebs_size_of_masters" {
   type      = string
-  default   = "1"
+  default   = "10"
 }
 
-# ---------------- aws_ebs_volume_slaves module ----------------
+# ---------------- aws_ebs_volume_slaves ec2 module ----------------
 
 variable "ebs_size_of_slaves" {
   type      = string
-  default   = "1"
-}
-
-# ---------------- s3_bucket module ----------------
-
-variable "bucket_name" {
-  type      = string
-  default   = "main-test-s3-bucket-for-test-projects"
-}
-
-variable "bucket_acl" {
-  type      = string
-  default   = "private"
+  default   = "10"
 }
 
 # ---------------- main module ----------------
 
 variable "region" {
   type      = string
-  default   = "us-east-1"
+  default   = "us-west-2"
 }
 
-# ---------------- vpc module ----------------
+# ---------------- vpc vpc module ----------------
 
 variable "ipv4_cidr_block" {
   type      = string
@@ -82,7 +46,7 @@ variable "instance_tenancy" {
   default   = "default"
 }
 
-# ---------------- vpc_subnet module ----------------
+# ---------------- vpc_subnet vpc module ----------------
 
 variable "subnet_ip4_cidr_block" {
   type      = string
@@ -108,41 +72,20 @@ variable "key_pair_name" {
 
 variable "key_pair_public_key" {
   type      = string
-  default   = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDYhcZZZ7I6cY/aGeq29Pe8q4ltt/AF4qL/teC6LvaLPOdUQZlt83IRzcTz16uA8ZxjROBEo9eOwIkekDBM6VwxL6xPPkTIcjZMRw1GU6Y47AqRTC4l/HXUBzSbGDp/ejHx6NeaQeh1aCEclt+yRCkR2Fn4gdOn/TTDZrDMcqTxHrhyiXvUww3+RyL4nvbY4FVHKINaLhjKW+Whp/+2oL7lNsID/hwDvz0Ve8+PlsMKxfnEbiYCnAugOPHS/dztpRuD2NzJifGHpAWAhBiHElEjVrUdkiI/+feSpaZqyN4s6iuIUquUz8XBI6ckJ9N3Qei5ZYBVTRnNke99D5THI1xN8uL2+CfITGQcSoTUnOSLi7ksUKRf6UdLHsX12vUtQHHUP+3L2TqE+YWJNpvWwpxXbp65WF4lX8lhnVxa0jbYq5Cv4w+DmG8dB3/z9c/dUbcjEjzdSoGdbzPTbsqVNW1Xz8VEo6zdQXX3GbXM5n8J3YVdYSXWCzf1y2wR10Ynofs= Ilia_Rakholla@EPRUPETW0597"
+  default   = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDStygijh1VHeP1iQqT2D4iPm+HNxegzuVpcoCmaRfJQBeI9zVrSsweMXrIuA592qOR7Ivk0Mt1QZ7u72aKZNoZCjOdg2Y/fJ5c41ZNx8fbTHZJAYjG6swYJdlztPG987HI2FNeLTIdtwXp3dwCuxNn8bVmA703G4L6O9ebQwwkrWwwwOCQye2Awmz5vhmtTQg8ppAEr84dR3sNTgpKIPg6qcFU0YiESFR7/ZfaLJMuuP1DBqKzbvvcBwcuM4D/lDhjuJOo5TTzWt7wReuziXby5UzWoIUWzbOTLx9FLkVNz7NKqi9Jf5NqkgFDixlxBVptAhOr4otZ6zrI9b8oFnbJ5A1DW698WnUK+5GmZO1PugXHHeDZOO5xF8UgdgwIqjqkHfynjRb0NZQd7q6o1n0JRMoVCYFd4lKLEQTbPctuS6uPV70OmpBUMLdUtYMvh50aabvzHw6XYkboBxc6T+ZD/7rlgxei+Ug3Wcv56Kb/6JJoz8moRKswODnAb+JbQKU= Ilia_Rakholla@EPRUPETW0799"
 }
 
-# ---------------- ec2 module ----------------
 
-variable "ec2_ami" {
-  type      = string
-  default   = "ami-02e136e904f3da870"
-}
-
-variable "ec2_instance_type" {
-  type      = string
-  default   = "t2.micro"
-}
-
-variable "ec2_root_block_device_size" {
-  type      = string
-  default   = "8"
-}
-
-variable "ec2_device_index" {
-  type      = string
-  default   = "0"
-}
-
-# ---------------- ec2_openshift_masters module ----------------
+# ---------------- ec2_k8s_masters module ----------------
 
 variable "number_of_masters" {
   type      = string
-  default   = "1"
+  default   = "2"
 }
 
 variable "ec2_ami_of_masters" {
   type      = string
-  default   = "ami-02e136e904f3da870"
+  default   = "ami-0b28dfc7adc325ef4"
 }
 
 variable "ec2_instance_type_of_masters" {
@@ -152,7 +95,7 @@ variable "ec2_instance_type_of_masters" {
 
 variable "ec2_root_block_device_size_of_masters" {
   type      = string
-  default   = "8"
+  default   = "10"
 }
 
 variable "ec2_device_index_of_masters" {
@@ -165,16 +108,16 @@ variable "name_tag_of_masters" {
   default   = "main_test_master"
 }
 
-# ---------------- ec2_openshift_slaves module ----------------
+# ---------------- ec2_k8s_slaves module ----------------
 
 variable "number_of_slaves" {
   type      = string
-  default   = "1"
+  default   = "2"
 }
 
 variable "ec2_ami_of_slaves" {
   type      = string
-  default   = "ami-0aeeebd8d2ab47354"
+  default   = "ami-0b28dfc7adc325ef4"
 }
 
 variable "ec2_instance_type_of_slaves" {
@@ -184,7 +127,7 @@ variable "ec2_instance_type_of_slaves" {
 
 variable "ec2_root_block_device_size_of_slaves" {
   type      = string
-  default   = "8"
+  default   = "10"
 }
 
 variable "ec2_device_index_of_slaves" {
@@ -197,14 +140,14 @@ variable "name_tag_of_slaves" {
   default   = "main_test_slave"
 }
 
-# ---------------- route_table module ----------------
+# ---------------- route_table vpc module ----------------
 
 variable "route_cidr_block" {
   type      = string
   default   = "0.0.0.0/0"
 }
 
-# ---------------- security_group module ----------------
+# ---------------- security_group vpc module ----------------
 
 variable "securyty_group_name" {
   type      = string
@@ -228,7 +171,7 @@ variable "ingres_protocol" {
 
 variable "ingress_cidr_block" {
   type      = string
-  default   = "0.0.0.0/0"
+  default   = "193.9.4.10/32"
 }
 
 variable "egress_from_port" {
@@ -251,30 +194,9 @@ variable "egress_cidr_blocks" {
   default   = "0.0.0.0/0"
 }
 
-# ---------------- volume_attachment module ----------------
+# ---------------- volume_attachment ec2 module ----------------
 
 variable "ebs_device_name" {
   type      = string
   default   = "/dev/sdh"
-}
-
-# ---------------- iam_role module ----------------
-
-variable "s3_access_role_name" {
-  type      = string
-  default   = "s3_access_role"
-}
-
-# ---------------- iam_role_policy module ----------------
-
-variable "s3_access_policy_name" {
-  type      = string
-  default   = "s3_access_policy"
-}
-
-# ---------------- iam_instance_profile module ----------------
-
-variable "s3_access_profile_name" {
-  type      = string
-  default   = "s3_access_profile"
 }

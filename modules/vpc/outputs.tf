@@ -5,3 +5,11 @@ output "vpcid" {
 output "vpc_cidr_block" {
   value = aws_vpc.main_test_vpc.cidr_block
 }
+
+output "vpc_subnet_id" {
+  value = aws_subnet.main_test_subnet.id
+}
+
+output "vpc_security_group_id" {
+  value = aws_security_group.main_test_security_group.id
+}
