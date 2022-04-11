@@ -43,7 +43,7 @@ variable "vpc_subnet_id" {
 }
 
 variable "vpc_security_group_id" {
-  type      = string
+  type      = list
 }
 
 # aws_ebs_volume

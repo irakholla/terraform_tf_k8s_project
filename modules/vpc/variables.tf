@@ -37,40 +37,79 @@ variable "ec2_map_public_ip_on_launch" {
 }
 
 # aws_security_group
+# ssh
 
-variable "securyty_group_name" {
+variable "security_group_name_ssh" {
   type      = string
 }
 
-variable "ingress_from_port" {
+variable "ingress_from_port_ssh" {
   type      = string
 }
 
-variable "ingress_to_port" {
+variable "ingress_to_port_ssh" {
   type      = string
 }
 
-variable "ingres_protocol" {
+variable "ingres_protocol_ssh" {
   type      = string
 }
 
-variable "ingress_cidr_block" {
+variable "ingress_cidr_block_ssh" {
   type      = string
 }
 
-variable "egress_from_port" {
+variable "egress_from_port_ssh" {
   type      = string
 }
 
-variable "egress_to_port" {
+variable "egress_to_port_ssh" {
   type      = string
 }
 
-variable "egress_protocol" {
+variable "egress_protocol_ssh" {
   type      = string
 }
 
-variable "egress_cidr_blocks" {
+variable "egress_cidr_blocks_ssh" {
+  type      = string
+}
+
+# internal
+
+variable "security_group_name_internal" {
+  type      = string
+}
+
+variable "ingress_from_port_internal" {
+  type      = string
+}
+
+variable "ingress_to_port_internal" {
+  type      = string
+}
+
+variable "ingres_protocol_internal" {
+  type      = string
+}
+
+variable "ingress_cidr_block_internal" {
+  type      = string
+}
+
+variable "egress_from_port_internal" {
+  type      = string
+}
+
+variable "egress_to_port_internal" {
+  type      = string
+}
+
+variable "egress_protocol_internal" {
+  type      = string
+}
+
+variable "egress_cidr_blocks_internal" {
   type      = string
 }
 

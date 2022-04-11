@@ -90,7 +90,7 @@ variable "ec2_ami_of_masters" {
 
 variable "ec2_instance_type_of_masters" {
   type      = string
-  default   = "t2.micro"
+  default   = "t3.xlarge"
 }
 
 variable "ec2_root_block_device_size_of_masters" {
@@ -122,7 +122,7 @@ variable "ec2_ami_of_slaves" {
 
 variable "ec2_instance_type_of_slaves" {
   type      = string
-  default   = "t2.micro"
+  default   = "t3.xlarge"
 }
 
 variable "ec2_root_block_device_size_of_slaves" {
@@ -148,48 +148,94 @@ variable "route_cidr_block" {
 }
 
 # ---------------- security_group vpc module ----------------
+# ssh
 
-variable "securyty_group_name" {
+variable "security_group_name_ssh" {
   type      = string
   default   = "allow_ssh"
 }
 
-variable "ingress_from_port" {
+variable "ingress_from_port_ssh" {
   type      = string
   default   = "22"
 }
 
-variable "ingress_to_port" {
+variable "ingress_to_port_ssh" {
   type      = string
   default   = "22"
 }
 
-variable "ingres_protocol" {
+variable "ingres_protocol_ssh" {
   type      = string
   default   = "tcp"
 }
 
-variable "ingress_cidr_block" {
+variable "ingress_cidr_block_ssh" {
   type      = string
-  default   = "193.9.4.10/32"
+  default   = "204.128.192.32/32"
 }
 
-variable "egress_from_port" {
-  type      = string
-  default   = "0"
-}
-
-variable "egress_to_port" {
+variable "egress_from_port_ssh" {
   type      = string
   default   = "0"
 }
 
-variable "egress_protocol" {
+variable "egress_to_port_ssh" {
+  type      = string
+  default   = "0"
+}
+
+variable "egress_protocol_ssh" {
   type      = string
   default   = "-1"
 }
 
-variable "egress_cidr_blocks" {
+variable "egress_cidr_blocks_ssh" {
+  type      = string
+  default   = "0.0.0.0/0"
+}
+
+variable "security_group_name_internal" {
+  type      = string
+  default   = "allow_internal_ports"
+}
+
+variable "ingress_from_port_internal" {
+  type      = string
+  default   = "0"
+}
+
+variable "ingress_to_port_internal" {
+  type      = string
+  default   = "65535"
+}
+
+variable "ingres_protocol_internal" {
+  type      = string
+  default   = "tcp"
+}
+
+variable "ingress_cidr_block_internal" {
+  type      = string
+  default   = "172.16.0.0/24"
+}
+
+variable "egress_from_port_internal" {
+  type      = string
+  default   = "0"
+}
+
+variable "egress_to_port_internal" {
+  type      = string
+  default   = "0"
+}
+
+variable "egress_protocol_internal" {
+  type      = string
+  default   = "-1"
+}
+
+variable "egress_cidr_blocks_internal" {
   type      = string
   default   = "0.0.0.0/0"
 }

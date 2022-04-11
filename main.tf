@@ -14,15 +14,26 @@ module "vpc" {
     subnet_availability_zone          = data.aws_availability_zones.available.names[0]
     ec2_map_public_ip_on_launch       = var.ec2_map_public_ip_on_launch
     # aws_security_group
-    securyty_group_name               = var.securyty_group_name
-    ingress_from_port                 = var.ingress_from_port
-    ingress_to_port                   = var.ingress_to_port
-    ingres_protocol                   = var.ingres_protocol
-    ingress_cidr_block                = var.ingress_cidr_block
-    egress_from_port                  = var.egress_from_port
-    egress_to_port                    = var.egress_to_port
-    egress_protocol                   = var.egress_protocol
-    egress_cidr_blocks                = var.egress_cidr_blocks
+    # ssh
+    security_group_name_ssh           = var.security_group_name_ssh
+    ingress_from_port_ssh             = var.ingress_from_port_ssh
+    ingress_to_port_ssh               = var.ingress_to_port_ssh
+    ingres_protocol_ssh               = var.ingres_protocol_ssh
+    ingress_cidr_block_ssh            = var.ingress_cidr_block_ssh
+    egress_from_port_ssh              = var.egress_from_port_ssh
+    egress_to_port_ssh                = var.egress_to_port_ssh
+    egress_protocol_ssh               = var.egress_protocol_ssh
+    egress_cidr_blocks_ssh            = var.egress_cidr_blocks_ssh
+    # internal
+    security_group_name_internal      = var.security_group_name_internal
+    ingress_from_port_internal        = var.ingress_from_port_internal
+    ingress_to_port_internal          = var.ingress_to_port_internal
+    ingres_protocol_internal          = var.ingres_protocol_internal
+    ingress_cidr_block_internal       = var.ingress_cidr_block_internal
+    egress_from_port_internal         = var.egress_from_port_internal
+    egress_to_port_internal           = var.egress_to_port_internal
+    egress_protocol_internal          = var.egress_protocol_internal
+    egress_cidr_blocks_internal       = var.egress_cidr_blocks_internal
     # aws_route_table
     route_cidr_block                  = var.route_cidr_block
 }
@@ -46,7 +57,7 @@ module "aws_instance_k8s_masters" {
     ebs_device_name                       = var.ebs_device_name
     # aws_network_interface
     vpc_subnet_id                         = module.vpc.vpc_subnet_id
-    vpc_security_group_id                 = module.vpc.vpc_security_group_id
+    vpc_security_group_id                 = [module.vpc.vpc_security_group_id_ssh, module.vpc.vpc_security_group_id_internal]
     # aws_ebs_volume
     ebs_availability_zone                 = data.aws_availability_zones.available.names[0]
     ebs_size_of_masters                   = var.ebs_size_of_masters
@@ -65,7 +76,7 @@ module "aws_instance_k8s_slaves" {
     ebs_device_name                         = var.ebs_device_name
     # aws_network_interface
     vpc_subnet_id                           = module.vpc.vpc_subnet_id
-    vpc_security_group_id                   = module.vpc.vpc_security_group_id
+    vpc_security_group_id                   = [module.vpc.vpc_security_group_id_ssh, module.vpc.vpc_security_group_id_internal]
     # aws_ebs_volume
     ebs_availability_zone                   = data.aws_availability_zones.available.names[0]
     ebs_size_of_slaves                      = var.ebs_size_of_slaves

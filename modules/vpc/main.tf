@@ -22,22 +22,41 @@ resource "aws_subnet" "main_test_subnet" {
 }
 
 # aws_security_group.main_test_security_group.id
-resource "aws_security_group" "main_test_security_group" {
-  name               = var.securyty_group_name
-  vpc_id             = aws_vpc.main_test_vpc.id
+resource "aws_security_group" "main_test_security_group_ssh" {
+  name   = var.security_group_name_ssh
+  vpc_id = aws_vpc.main_test_vpc.id
 
   ingress {
-    from_port        = var.ingress_from_port
-    to_port          = var.ingress_to_port
-    protocol         = var.ingres_protocol
-    cidr_blocks      = [var.ingress_cidr_block]
+    from_port   = var.ingress_from_port_ssh
+    to_port     = var.ingress_to_port_ssh
+    protocol    = var.ingres_protocol_ssh
+    cidr_blocks = [var.ingress_cidr_block_ssh]
   }
 
   egress {
-    from_port        = var.egress_from_port
-    to_port          = var.egress_to_port
-    protocol         = var.egress_protocol
-    cidr_blocks      = [var.egress_cidr_blocks]
+    from_port   = var.egress_from_port_ssh
+    to_port     = var.egress_to_port_ssh
+    protocol    = var.egress_protocol_ssh
+    cidr_blocks = [var.egress_cidr_blocks_ssh]
+  }
+}
+
+resource "aws_security_group" "main_test_security_group_internal" {
+  name               = var.security_group_name_internal
+  vpc_id             = aws_vpc.main_test_vpc.id
+
+  ingress {
+    from_port        = var.ingress_from_port_internal
+    to_port          = var.ingress_to_port_internal
+    protocol         = var.ingres_protocol_internal
+    cidr_blocks      = [var.ingress_cidr_block_internal]
+  }
+
+  egress {
+    from_port        = var.egress_from_port_internal
+    to_port          = var.egress_to_port_internal
+    protocol         = var.egress_protocol_internal
+    cidr_blocks      = [var.egress_cidr_blocks_internal]
   }
 
   tags = {
